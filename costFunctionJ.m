@@ -8,4 +8,5 @@ function J = costFunctionJ(X, y, theta)
   sqrErrors = (predictions - y).^2 % squared errors 
   
   J = 1/(2*m) * sum(sqrErrors); 
+ 
 endfunction
