@@ -16,12 +16,26 @@ grad = zeros(size(theta));
 %               You should set J to the cost.
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
+  %DIMENSIONS: 
+  %   theta = (n+1) x 1
+  %   X     = m x (n+1)
+  %   y     = m x 1
+  %   grad  = (n+1) x 1
+  %   J     = Scalar
+  
+z = X * theta;      % m x 1
+h_x = sigmoid(z);  % m x 1 
 
+% regularization term
 
+reg_term = (lambda/(2*m)) * sum(theta(2:end).^2);
 
+J = (1/m)*sum( - y .* log(h_x) - (1 - y) .* log(1 - h_x)) + reg_term;
 
+grad(1) =  1/m * (X(:,1)'*(h_x - y));
 
-
+grad(2:end) = 1/m * (X(:,[2:end])'*(h_x - y)) + lambda*theta(2:end)/m;
+				   
 % =============================================================
 
 end
