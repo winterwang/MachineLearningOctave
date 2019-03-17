@@ -31,8 +31,9 @@ X = [ones(m, 1) X];
 %       
 
 
-
-
+probability = X*all_theta';
+%p = max(probability, [], 2);
+ [prob, p] = max(probability,[],2); % m  x 1 
 
 
 
