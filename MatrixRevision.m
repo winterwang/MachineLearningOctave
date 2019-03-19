@@ -64,4 +64,3 @@ A_inv = inv(A)
 % What is A^(-1)*A? 
 A_invA = inv(A)*A
 
-
