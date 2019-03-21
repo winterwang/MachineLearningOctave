@@ -134,11 +134,6 @@ reg_termTheta2 = (lambda/m) * [zeros(size(Theta2, 1), 1) Theta2(:, 2:end)]; % 10
 
 Theta1_grad = Theta1_grad + reg_termTheta1;
 Theta2_grad = Theta2_grad + reg_termTheta2;
-
-
-
-
-
 % -------------------------------------------------------------
 
 % =========================================================================
