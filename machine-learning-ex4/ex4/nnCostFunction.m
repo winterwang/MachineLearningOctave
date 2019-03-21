@@ -32,13 +32,39 @@ Theta2_grad = zeros(size(Theta2));
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
-%               following parts.
-%
+%               following parts
 % Part 1: Feedforward the neural network and return the cost in the
 %         variable J. After implementing Part 1, you can verify that your
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
-%
+
+% add ones to the X data matrix
+X = [ones(m, 1) X]; %dimension 5000 * 401
+
+% calculate a2 hidden layer matrix
+z2 = X * Theta1';   % dimension 5000 * 25
+a2 = sigmoid(z2);   % dimension 5000 * 25
+
+% add ones to the a2 hidden layer matrix
+a2 = [ones(size(a2, 1), 1) a2]; % dimension 5000 * 26
+
+% calculate output layer h_x
+z3 = a2*Theta2'; % dimension 5000 * 10
+h_x = sigmoid(z3); % dimension 5000 * 10
+
+% calculate the cost function
+
+z = 1:num_labels;  %create a row vector for sequence of labels (dimension 1 * 10)
+Y = y == z;        %create a matrix for output layer (dimension 5000 * 10)
+J = (1/m)*sum(sum(- Y .* log(h_x) - (1 - Y) .* log(1 - h_x)));
+
+
+%J = (1/m) * sum( sum(
+%		     (-Y.*log(h_x))-((1-Y).*log(1-h_x))
+%		   )
+%	       );  %scalar
+
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
@@ -53,7 +79,13 @@ Theta2_grad = zeros(size(Theta2));
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
-%
+
+
+
+
+
+
+
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
@@ -64,9 +96,11 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+% regularization term
+reg_term = (lambda/(2*m)) * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^2)));
+  
 
-
-
+J = J + reg_term;
 
 
 
