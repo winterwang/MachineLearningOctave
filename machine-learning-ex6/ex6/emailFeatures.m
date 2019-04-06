@@ -49,10 +49,21 @@ x = zeros(n, 1);
 %
 
 
+%for j = 1:n
+%  for i = 1:length(word_indices)
+%    if j == word_indices[i ; ]
+%      x = [x ; 1]
+%    else x = [x ; 0]
+%    end
+%  end
+
+%end
 
 
-
-
+  %% WORKING: SOLUTION 2 %%%%%%
+  for i = 1:length(word_indices)
+      x(word_indices(i)) = 1;
+  end
 
 
 % =========================================================================

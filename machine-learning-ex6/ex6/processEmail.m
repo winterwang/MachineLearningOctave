@@ -99,11 +99,17 @@ while ~isempty(email_contents)
 
 
 
+%    a = strcmp(str, vocabList);
 
+%    word_indices = [word_indices ; vocabList{a}];
 
-
-
-
+   % for i = 1:length(str)
+      for j = 1:length(vocabList)
+	if strcmp(vocabList{j}, str)
+	  word_indices = [word_indices ; j];
+	  end
+      end
+  %  end  
 
 
     % =============================================================
