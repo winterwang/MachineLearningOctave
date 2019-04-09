@@ -7,7 +7,7 @@ function X_rec = recoverData(Z, U, K)
 %
 
 % You need to return the following variables correctly.
-X_rec = zeros(size(Z, 1), size(U, 1));
+X_rec = zeros(size(Z, 1), size(U, 1)); % dim: m(50) x n(2) 
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the approximation of the data by projecting back
@@ -21,6 +21,11 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               Notice that U(j, 1:K) is a row vector.
 %               
 
+U_reduced = U(:, 1:K); % dim: n x K 
+
+X_rec = Z * U_reduced';  % dim:  m x K * K x n
+%for i = 1:size(Z, 1)
+  
 
 
 % =============================================================

@@ -6,10 +6,10 @@ function idx = findClosestCentroids(X, centroids)
 %
 
 % Set K
-K = size(centroids, 1);
+K = size(centroids, 1); % 3 x 1
 
 % You need to return the following variables correctly.
-idx = zeros(size(X,1), 1);
+idx = zeros(size(X,1), 1);  % 300 x 1
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Go over every example, find its closest centroid, and store
@@ -19,14 +19,39 @@ idx = zeros(size(X,1), 1);
 %               range 1..K
 %
 % Note: You can use a for-loop over the examples to compute this.
-%
+% centroid = K x no. features : 3 x 2
+
+%for   i = size(X, 1)
+%  diff1 = inf;
+%  for j = 1:K
+%    diff2 = norm(X(i, :) - centroids(j, :));
+%    if diff1 > diff2;
+%      diff1 = diff2;
+%      idx(i) = j;
+%    endif
+%  endfor
+%endfor
 
 
+%for i = 1:size(X,1)
+%	diff1 = inf;
+%	for j = 1:K
+%	       %	diff = sqrt(sum((X(i,:) - centroids(j,:)).^2));
+%	   diff2 = norm(X(i, :) - centroids(j, :));
+%		if diff1 > diff2
+%			diff1 = diff2;
+%			idx(i) = j;
+%		endif
+%	endfor
+%endfor			
 
-
-
-
-
+  for i = 1:size(X,1)
+      temp = zeros(K,1);
+      for j = 1:K
+          temp(j)=sqrt(sum((X(i,:)-centroids(j,:)).^2));
+      end
+      [~,idx(i)] = min(temp);
+  end
 % =============================================================
 
 end

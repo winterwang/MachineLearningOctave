@@ -28,9 +28,16 @@ centroids = zeros(K, n);
 
 
 
+%for i = 1:K
+%%  temp = zeros(size(idx, 1), 1);
+%  temp = find(idx == i);
+%  centroid(i, :) = mean(X(temp, :));
+%endfor
 
-
-
+ for i = 1:K
+      temp = idx == i;       %indexes of all the input which belongs to cluster j
+      centroids(i,:) = sum(X .* temp)/(sum(temp)); % calculating mean using built-in function
+  end
 
 
 % =============================================================

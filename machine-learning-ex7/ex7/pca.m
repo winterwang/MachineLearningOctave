@@ -21,8 +21,9 @@ S = zeros(n);
 %
 
 
+Cov_matrx = (1/m)*(X' * X);
 
-
+[U, S, V] = svd(Cov_matrx);
 
 
 

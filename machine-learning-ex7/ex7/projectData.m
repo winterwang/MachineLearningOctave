@@ -7,7 +7,7 @@ function Z = projectData(X, U, K)
 %
 
 % You need to return the following variables correctly.
-Z = zeros(size(X, 1), K);
+Z = zeros(size(X, 1), K); % dim: n(=50) x K
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the projection of the data using only the top K 
@@ -18,9 +18,17 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+U_reduced = U(:, 1:K); % dim = n x K
 
+%for i = 1:size(X, 1)
+%  for k = 1:K
+%    x = X(i, :)';
+%    Z(i,k) = x' * U_reduced(:, k);
+%  endfor
+%endfor
 
-
+Z =  X * U_reduced; % dim: m x n * n x K
+ 
 % =============================================================
 
 end
